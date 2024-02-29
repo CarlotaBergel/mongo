@@ -105,7 +105,7 @@ let estudiante3 = new Students({
     marks: [nota3, nota2]
 })
 let estudiante4 = new Students({
-    firstName: "nyan",
+    firstName: "Nyan",
     lastName: "Bergel",
     marks: [nota1, nota2]
 })
@@ -145,22 +145,25 @@ let estudiante4 = new Students({
 // });
 
 
+Students.findOne({firstName: "Jonathan" })
+.then((student) => {
+    // console.log(student)
+    // student.marks.forEach((marks) => {
+    //     console.log("notas de Jonathan" + marks);
+    // });
 
-
-Students.findOne({ firstName: "Nyan" })
-.then((students) => {
-    students.marks.forEach((notas) => {
-        console.log("notas de nyan" + notas);
+    student.marks.forEach((mark) => {
+        mark.subjects.forEach((subject) =>{
+            console.log("asignaturas de Jonathan " + subject.title);
+        });
     });
 
-    students.marks.forEach((mark) => {
-        console.log("asignaturas de nyan" + mark);
-    });
-
-    students.marks.forEach((mark) => { 
-      mark.subjects.teachers.forEach((teacher) => {
-        console.log("los profesores de nyan"+ teacher);
-      });
+    student.marks.forEach((mark) => { 
+        mark.subjects.forEach((subject) =>{
+            subject.teachers.forEach((teacher) => {
+                console.log("los profesores de Jonathan "+ teacher);
+            });
+        });
     });
 })
 .catch((err) => {
